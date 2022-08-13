@@ -1,0 +1,5 @@
+Adjust ETFs for stock splits
+Try to find easier source for daily API
+Technical indicators for charts
+Charts at various frequencies
+Charts YTD, Max, previous week, previous month, etc.
