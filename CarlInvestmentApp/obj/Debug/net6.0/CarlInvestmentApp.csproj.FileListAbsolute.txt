@@ -80,3 +80,5 @@
 /Users/jonathoncarl/projects/carl-wealth-management/CarlInvestmentApp/obj/Debug/net6.0/ref/CarlInvestmentApp.dll
 /Users/jonathoncarl/projects/carl-wealth-management/CarlInvestmentApp/obj/Debug/net6.0/CarlInvestmentApp.pdb
 /Users/jonathoncarl/projects/carl-wealth-management/CarlInvestmentApp/obj/Debug/net6.0/CarlInvestmentApp.genruntimeconfig.cache
+/Users/jonathoncarl/projects/carl-wealth-management/CarlInvestmentApp/bin/Debug/net6.0/package-lock.json
+/Users/jonathoncarl/projects/carl-wealth-management/CarlInvestmentApp/bin/Debug/net6.0/package.json
