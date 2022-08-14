@@ -1,6 +1,8 @@
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+from dateutil.relativedelta import relativedelta
 from ta.volatility import BollingerBands
 from ta.utils import dropna
 
@@ -8,6 +10,7 @@ os.chdir("/Users/matthewcarl/Dropbox/CWM/carl-wealth-management")
 
 def read_data(series='sp'):
     data = pd.read_csv('data/' + series + '.csv.gz', engine='c')
+    data['date'] = pd.to_datetime(data['date'])
     return data
 
 def get_tech_ind(data, var="sp"):
@@ -33,23 +36,31 @@ def get_tech_ind(data, var="sp"):
     """
     return data
 
-def make_chart(data_plt, var="price", xlab="Date", start_date="2020-01-01"):
+def make_chart(data_plt, var="price", xlab="Date", type="WEEKLY"):
+    if type=="WEEKLY":
+        start_date = data_plt['date'].max() - relativedelta(days=7)
+    elif type == "MONTHLY":
+        start_date = data_plt['date'].max() - relativedelta(months=1)
+    elif type == "YTD":
+        start_date = pd.to_datetime(str(data_plt['date'].max().year))
+    
     data_plt = data_plt[data_plt['date'] >= start_date]
     fig, ax = plt.subplots(figsize=(8, 6), dpi=100)
-    ax.plot(pd.to_datetime(data_plt['date']), data_plt[var], color='black')
-    ax.plot(pd.to_datetime(data_plt['date']),
-            data_plt[var+'_bbm'], color='blue', alpha=0.8, linestyle='dotted')
-    ax.plot(pd.to_datetime(data_plt['date']),
-            data_plt[var+'_bbh'], color='red', alpha=0.8, linestyle='dotted')
-    ax.plot(pd.to_datetime(data_plt['date']),
-            data_plt[var+'_bbl'], color='red', alpha=0.8, linestyle='dotted')
+    ax.xaxis.set_major_formatter(
+        mdates.ConciseDateFormatter(ax.xaxis.get_major_locator()))
+    ax.plot(data_plt['date'], data_plt[var], color='black')
+    ax.plot(data_plt['date'],data_plt[var+'_bbm'], color='blue', alpha=0.8, linestyle='dotted')
+    ax.plot(data_plt['date'],data_plt[var+'_bbh'], color='red', alpha=0.8, linestyle='dotted')
+    ax.plot(data_plt['date'],data_plt[var+'_bbl'], color='red', alpha=0.8, linestyle='dotted')
     ax.set_xlabel(xlab)
-    fig.savefig('charts/' + var + ".pdf")
+    fig.savefig('charts/' + type + "_" + var.upper() + ".pdf")
 
 def execute_chart(chart='sp'):
     data = read_data(series=chart)
     plt_data = get_tech_ind(data, chart)
-    make_chart(plt_data, var = chart, xlab="Date")
+    make_chart(plt_data, var=chart, xlab="Date", type='WEEKLY')
+    make_chart(plt_data, var=chart, xlab="Date", type='MONTHLY')
+    make_chart(plt_data, var=chart, xlab="Date", type='YTD')
 
 def main():
     charts = ['sp', 'vix']
