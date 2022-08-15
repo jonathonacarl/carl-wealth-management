@@ -1,5 +1,12 @@
-Adjust ETFs for stock splits
-Try to find easier source for daily API
-Technical indicators for charts
-Charts at various frequencies
-Charts YTD, Max, previous week, previous month, etc.
+SITE
+	Implement CRON tab for update_charts.sh
+	Which technical indicators for charts?
+
+ANALYSIS
+	Code rules
+	Backtesting (analysis.py)
+
+-------------------------------------------
+
+FUTURE
+	Performance (when trades commence)

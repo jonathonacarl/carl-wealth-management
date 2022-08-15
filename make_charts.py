@@ -1,21 +1,27 @@
 import pandas as pd
 import os
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
 from dateutil.relativedelta import relativedelta
 from ta.volatility import BollingerBands
 from ta.utils import dropna
+import matplotlib.pyplot as plt
+import io
+# from mplfinance.original_flavor import graph_candlestick
+import mplfinance as fplt
 
 os.chdir("/Users/matthewcarl/Dropbox/CWM/carl-wealth-management")
 
-def read_data(series='sp'):
+
+def read_data(series='TQQQ'):
     data = pd.read_csv('data/' + series + '.csv.gz', engine='c')
-    data['date'] = pd.to_datetime(data['date'])
+    data['Date'] = pd.to_datetime(data['Date'])
+    # data['Diff'] = data['Open'] - data['Close']
+    # data['Colors'] = ['g' if v >= 0 else 'r' for v in data['Diff']]
     return data
 
-def get_tech_ind(data, var="sp"):
 
-    data = dropna(data)
+def get_tech_ind(data):
+
+    # data = dropna(data)
 
     """
         Bollinger Bands
@@ -23,10 +29,10 @@ def get_tech_ind(data, var="sp"):
             UB = MB + (X * StdDev)
             LB = MB — (X * StdDev)
     """
-    indicator_bb = BollingerBands(close=data[var], window=20, window_dev=2)
-    data[var+'_bbm'] = indicator_bb.bollinger_mavg()
-    data[var+'_bbh'] = indicator_bb.bollinger_hband()
-    data[var+'_bbl'] = indicator_bb.bollinger_lband()
+    indicator_bb = BollingerBands(close=data['Close'], window=20, window_dev=2)
+    data['Close_bbm'] = indicator_bb.bollinger_mavg()
+    data['Close_bbh'] = indicator_bb.bollinger_hband()
+    data['Close_bbl'] = indicator_bb.bollinger_lband()
 
     """
         Moving Average Convergence Divergence
@@ -34,36 +40,43 @@ def get_tech_ind(data, var="sp"):
             MACD_Signal = EMA(n3, MACD)
             MACD_Difference = MACD — MACD_Signal
     """
+    # data["macd"], data["macd_signal"], data["macd_hist"] = ta.MACD(data['Close'])
     return data
 
-def make_chart(data_plt, var="price", xlab="Date", type="WEEKLY"):
-    if type=="WEEKLY":
-        start_date = data_plt['date'].max() - relativedelta(days=7)
-    elif type == "MONTHLY":
-        start_date = data_plt['date'].max() - relativedelta(months=1)
-    elif type == "YTD":
-        start_date = pd.to_datetime(str(data_plt['date'].max().year))
-    
-    data_plt = data_plt[data_plt['date'] >= start_date]
-    fig, ax = plt.subplots(figsize=(8, 6), dpi=100)
-    ax.xaxis.set_major_formatter(
-        mdates.ConciseDateFormatter(ax.xaxis.get_major_locator()))
-    ax.plot(data_plt['date'], data_plt[var], color='black')
-    ax.plot(data_plt['date'],data_plt[var+'_bbm'], color='blue', alpha=0.8, linestyle='dotted')
-    ax.plot(data_plt['date'],data_plt[var+'_bbh'], color='red', alpha=0.8, linestyle='dotted')
-    ax.plot(data_plt['date'],data_plt[var+'_bbl'], color='red', alpha=0.8, linestyle='dotted')
-    ax.set_xlabel(xlab)
-    fig.savefig('charts/' + type + "_" + var.upper() + ".pdf")
+def make_chart(data_plt, series="TQQQ", type="DAILY_YTD"):
+    if type == "DAILY_YTD":
+        start_date = pd.to_datetime(str(data_plt['Date'].max().year))
+    elif type=="WEEKLY_YTD":
+        start_date = pd.to_datetime(str(data_plt['Date'].max().year))
+        data_plt.groupby(data_plt['Date'].dt.week, as_index=False).last()
+    elif type == "DAILY_MONTH":
+        start_date = data_plt['Date'].max() - relativedelta(months=1)
+    elif type == "DAILY_WEEK":
+        start_date = data_plt['Date'].max() - relativedelta(days=7)
 
-def execute_chart(chart='sp'):
+    data_plt = data_plt[data_plt['Date'] >= start_date]
+    data_plt = data_plt.set_index('Date')
+    if type in ["DAILY_YTD", "WEEKLY_YTD"]:
+        # bb = fplt.make_addplot(data_plt[["Close_bbm", "Close_bbh", "Close_bbl"]])
+        fplt.plot(data_plt[["Open", "High", "Low", "Close", "Volume"]], volume=True, style='yahoo',
+                type='renko', renko_params=dict(brick_size='atr', atr_length=2),
+                savefig="charts/"+type+"_"+series+".png")
+    elif type in ["DAILY_MONTH", "DAILY_WEEK"]:
+        fplt.plot(data_plt[["Open", "High", "Low", "Close", "Volume"]], volume=True, style='yahoo',
+                  type='candle', savefig="charts/"+type+"_"+series+".png")
+
+
+def execute_chart(chart='TQQQ'):
     data = read_data(series=chart)
-    plt_data = get_tech_ind(data, chart)
-    make_chart(plt_data, var=chart, xlab="Date", type='WEEKLY')
-    make_chart(plt_data, var=chart, xlab="Date", type='MONTHLY')
-    make_chart(plt_data, var=chart, xlab="Date", type='YTD')
+    data_plt = get_tech_ind(data)
+    make_chart(data_plt, series=chart, type='DAILY_YTD')
+    make_chart(data_plt, series=chart, type='WEEKLY_YTD')
+    make_chart(data_plt, series=chart, type='DAILY_MONTH')
+    make_chart(data_plt, series=chart, type='DAILY_WEEK')
+    
 
 def main():
-    charts = ['sp', 'vix']
+    charts = ['TQQQ', 'SQQQ', 'SPY', 'UVXY', "^VIX", "^GSPC", "^DJI", "^IXIC"]
     [execute_chart(chart) for chart in charts]
 
 if __name__ == '__main__':
