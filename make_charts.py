@@ -48,7 +48,8 @@ def make_chart(data_plt, series="TQQQ", type="DAILY_YTD"):
         start_date = pd.to_datetime(str(data_plt['Date'].max().year))
     elif type=="WEEKLY_YTD":
         start_date = pd.to_datetime(str(data_plt['Date'].max().year))
-        data_plt.groupby(data_plt['Date'].dt.week, as_index=False).last()
+        data_plt = data_plt.groupby(
+            data_plt['Date'].dt.week, as_index=False).last()
     elif type == "DAILY_MONTH":
         start_date = data_plt['Date'].max() - relativedelta(months=1)
     elif type == "DAILY_WEEK":
