@@ -1,6 +1,12 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "target": "es5",
+    "typeRoots": ["./global"],
+    "types" : [
+      "node",
+      "webpack-env"
+    ],
     "lib": [
       "dom",
       "dom.iterable",
@@ -18,9 +24,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths" : {
+      "~/*" : ["./src/*"]
+    }
   },
   "include": [
-    "src"
+    "src", "react-app-env.d.ts"
   ]
 }
