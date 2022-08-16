@@ -51,7 +51,7 @@ def make_chart(data_plt, series="TQQQ", type="DAILY_YTD"):
     kama = [fplt.make_addplot(data_plt["KAMA_3"], linestyle='dotted', color='blue'),
             fplt.make_addplot(data_plt["KAMA_20"], linestyle='dotted', color='black')]
     fplt.plot(data_plt[["Open", "High", "Low", "Close", "Volume"]], type='candle', volume=True,
-              style='yahoo', addplot=kama, tight_layout=True, savefig="charts/"+type+"_"+series+".png")
+              style='yahoo', addplot=kama, tight_layout=True, savefig="../public/images/"+type+"_"+series+".png")
     
 def execute_chart(chart='TQQQ'):
     data = read_data(series=chart)
