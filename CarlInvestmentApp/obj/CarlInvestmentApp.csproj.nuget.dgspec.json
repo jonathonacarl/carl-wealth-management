@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jonathoncarl/projects/carl-wealth-management/CarlInvestmentApp/CarlInvestmentApp.csproj": {}
+    "/Users/matthewcarl/Dropbox/CWM/carl-wealth-management/CarlInvestmentApp/CarlInvestmentApp.csproj": {}
   },
   "projects": {
-    "/Users/jonathoncarl/projects/carl-wealth-management/CarlInvestmentApp/CarlInvestmentApp.csproj": {
+    "/Users/matthewcarl/Dropbox/CWM/carl-wealth-management/CarlInvestmentApp/CarlInvestmentApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jonathoncarl/projects/carl-wealth-management/CarlInvestmentApp/CarlInvestmentApp.csproj",
+        "projectUniqueName": "/Users/matthewcarl/Dropbox/CWM/carl-wealth-management/CarlInvestmentApp/CarlInvestmentApp.csproj",
         "projectName": "CarlInvestmentApp",
-        "projectPath": "/Users/jonathoncarl/projects/carl-wealth-management/CarlInvestmentApp/CarlInvestmentApp.csproj",
-        "packagesPath": "/Users/jonathoncarl/.nuget/packages/",
-        "outputPath": "/Users/jonathoncarl/projects/carl-wealth-management/CarlInvestmentApp/obj/",
+        "projectPath": "/Users/matthewcarl/Dropbox/CWM/carl-wealth-management/CarlInvestmentApp/CarlInvestmentApp.csproj",
+        "packagesPath": "/Users/matthewcarl/.nuget/packages/",
+        "outputPath": "/Users/matthewcarl/Dropbox/CWM/carl-wealth-management/CarlInvestmentApp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/jonathoncarl/.nuget/NuGet/NuGet.Config"
+          "/Users/matthewcarl/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"

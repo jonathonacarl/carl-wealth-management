@@ -8,21 +8,21 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CarlInvestmentApp
 build_property.RootNamespace = CarlInvestmentApp
-build_property.ProjectDir = /Users/jonathoncarl/projects/carl-wealth-management/CarlInvestmentApp/
+build_property.ProjectDir = /Users/matthewcarl/Dropbox/CWM/carl-wealth-management/CarlInvestmentApp/
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/jonathoncarl/projects/carl-wealth-management/CarlInvestmentApp
+build_property.MSBuildProjectDirectory = /Users/matthewcarl/Dropbox/CWM/carl-wealth-management/CarlInvestmentApp
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/jonathoncarl/projects/carl-wealth-management/CarlInvestmentApp/Pages/Error.cshtml]
+[/Users/matthewcarl/Dropbox/CWM/carl-wealth-management/CarlInvestmentApp/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jonathoncarl/projects/carl-wealth-management/CarlInvestmentApp/Pages/Shared/_LoginPartial.cshtml]
+[/Users/matthewcarl/Dropbox/CWM/carl-wealth-management/CarlInvestmentApp/Pages/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jonathoncarl/projects/carl-wealth-management/CarlInvestmentApp/Pages/_ViewImports.cshtml]
+[/Users/matthewcarl/Dropbox/CWM/carl-wealth-management/CarlInvestmentApp/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
