@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Document } from "react-pdf";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -9,8 +8,6 @@ import { IChart } from "../../interfaces/IChart";
 import { Alert, Box, Container, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { Stack } from "@mui/system";
-const fs = require("fs");
-const path = require("path");
 const TYPES: string[] = [
     "DAILY_WEEK",
     "DAILY_MONTH",
