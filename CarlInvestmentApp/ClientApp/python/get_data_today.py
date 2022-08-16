@@ -4,9 +4,6 @@ import gzip
 import yfinance as yf
 
 
-os.chdir("/Users/matthewcarl/Dropbox/CWM/carl-wealth-management")  # Personal
-
-
 def get_data_today():
     ticker_list = ["TQQQ", "SQQQ", "SPY", "UVXY", "^VIX", "^GSPC", "^DJI", "^IXIC"]
     tickers = [yf.Ticker(t) for t in ticker_list]

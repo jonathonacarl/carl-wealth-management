@@ -6,8 +6,6 @@ import mplfinance as fplt
 import io
 from ta.momentum import KAMAIndicator
 
-os.chdir("/Users/matthewcarl/Dropbox/CWM/carl-wealth-management")
-
 
 def read_data(series="TQQQ"):
     data = pd.read_csv("data/" + series + ".csv.gz", engine="c")

@@ -7,8 +7,6 @@ import wrds
 from fredapi import Fred
 import yfinance as yf
 
-os.chdir("/Users/matthewcarl/Dropbox/CWM/carl-wealth-management")  # Personal
-
 
 def get_hist_sp(wrds):
     # sprtrn, vwretd, usdval
