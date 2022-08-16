@@ -8,11 +8,14 @@ from fredapi import Fred
 import yfinance as yf
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # os.chdir("/Users/matthewcarl/Dropbox/CWM/carl-wealth-management/ClientApp/python") # Personal
 =======
 os.chdir("/Users/matthewcarl/Dropbox/CWM/carl-wealth-management")  # Personal
 >>>>>>> main
 
+=======
+>>>>>>> main
 
 def get_hist_sp(wrds):
     # sprtrn, vwretd, usdval
