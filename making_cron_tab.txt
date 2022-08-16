@@ -1,0 +1,16 @@
+https://crontab.guru/#0_0_*_*_1-5
+
+https://betterprogramming.pub/https-medium-com-ratik96-scheduling-jobs-with-crontab-on-macos-add5a8b26c30
+
+Use crontab.guru to help know the correct sequence of numbers/* for job. Follow instructions from link.
+
+1. In terminal, type crontab -e (opens vim)
+2. From vim screen, hit i to put the editor into INSERT mode
+3. Put cron command on first line
+4. Hit esc, then type :wq
+5. To verify everything worked, in terminal type crontab -l
+
+Example: 
+0 0 * * 1-5 cd ~/Dropbox/CWM/carl-wealth-management && ./update_charts.sh
+
+This will run update_charts.sh every weekday at midnight.
