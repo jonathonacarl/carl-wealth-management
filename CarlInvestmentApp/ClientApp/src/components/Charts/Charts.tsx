@@ -17,7 +17,7 @@ const TYPES: string[] = [
     "DAILY_YTD",
     "WEEKLY_YTD"
 ];
-const FUNDS: string[] = ["SP", "VIX"];
+const FUNDS: string[] = [];
 
 export const Charts: React.FC = () => {
     const [charts, setCharts] = React.useState<IChart[]>([]);
@@ -31,7 +31,7 @@ export const Charts: React.FC = () => {
         };
 
         const chartNames = importAll(
-            require.context("../../../public/images", false, /\.png$/)
+            require.context("../../../public/images/", false, /\.png$/)
         );
         const charts: IChart[] = [];
         chartNames.forEach((c: any) => {
